@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pastel-bg: #f2f6f5;        /* Soft pale sage-cream */
+  --color-pastel-sidebar: #e9f0ee;   /* Slightly darker soft sage */
+  --color-pastel-card: #ffffff;
+  
+  --color-pastel-mint: #d4e6df;      /* Mint pastel */
+  --color-pastel-peach: #f7e5d9;     /* Peach pastel */
+  --color-pastel-gold: #f5eacd;      /* Gold pastel */
+  --color-pastel-lavender: #e5dff0;  /* Lavender pastel */
+  --color-pastel-blue: #dce7f0;      /* Blue pastel */
+  --color-pastel-red: #fadbd8;       /* Red pastel for deletes/signouts */
+
+  --color-forest: #183b32;
+  --color-forest-light: #255045;
+  --color-forest-dark: #0e2620;
+  --color-brass: #8b6f47;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-display: 'Cinzel', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-pastel-bg);
+    color: var(--color-forest);
+    font-family: var(--font-sans);
+    height: 100vh;
+    overflow: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    color: var(--color-forest);
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
