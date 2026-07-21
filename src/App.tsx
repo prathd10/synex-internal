@@ -1688,21 +1688,24 @@ export default function App() {
   // LOGGED-IN RENDER
   // ----------------------------------------------------
   return (
-    <div className="flex h-screen w-screen bg-pastel-bg overflow-hidden">
+    <div className="flex h-screen h-[100dvh] w-screen w-full bg-pastel-bg overflow-hidden">
       
       {/* Sidebar Navigation - EXACTLY 3 OPTIONS IN ORDER */}
       {/* Mobile Backdrop overlay */}
       {isMobileSidebarOpen && (
         <div 
           onClick={() => setIsMobileSidebarOpen(false)} 
-          className="fixed inset-0 bg-black/45 z-30 lg:hidden"
+          className="fixed inset-0 bg-black/45 z-40 lg:hidden"
         />
       )}
 
       {/* Sidebar Navigation */}
-      <aside className={`fixed lg:static inset-y-0 left-0 w-64 bg-pastel-sidebar border-r border-slate-200/80 flex flex-col p-6 shrink-0 z-40 transition-transform duration-300 transform lg:transform-none ${
-        isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-      }`}>
+      <aside 
+        className={`fixed lg:static inset-y-0 left-0 w-64 bg-pastel-sidebar border-r border-slate-200/80 flex flex-col p-6 shrink-0 z-50 transition-transform duration-300 transform lg:transform-none ${
+          isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        }`}
+        style={{ paddingTop: 'max(1.5rem, calc(1.5rem + env(safe-area-inset-top, 0px)))' }}
+      >
         <div className="flex items-center justify-between mb-10 pl-2">
           <div className="flex items-center gap-3">
             <Home className="w-5 h-5 text-forest" />
@@ -1772,7 +1775,10 @@ export default function App() {
       <main className="flex-grow flex flex-col overflow-y-auto bg-pastel-bg">
         
         {/* Topbar — burger left | brand center | spacer right */}
-        <header className="flex items-center justify-between px-4 py-4 bg-white border-b border-slate-200/80 sticky top-0 z-20">
+        <header 
+          className="flex items-center justify-between px-4 pb-4 bg-white/95 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-30 shrink-0"
+          style={{ paddingTop: 'max(1rem, calc(1rem + env(safe-area-inset-top, 0px)))' }}
+        >
           {/* Left: hamburger (mobile only) */}
           <button
             onClick={() => setIsMobileSidebarOpen(true)}
