@@ -1,7 +1,9 @@
+export type PropertyType = 'Apartment' | 'Villa' | 'Penthouse' | 'Office' | 'Retail' | 'Warehouse' | 'Plot';
+
 export interface Listing {
   id: string;
   purpose: 'Rent' | 'Sale';
-  type: 'Apartment' | 'Villa' | 'Penthouse' | 'Office';
+  type: PropertyType;
   society: string;
   locality: string;
   city: string;
@@ -38,6 +40,33 @@ export interface Listing {
 }
 
 export type RoleType = 'admin' | 'consultant';
-export type TabType = 'dashboard' | 'inventory' | 'find' | 'settings';
+export type TabType = 'dashboard' | 'inventory' | 'find' | 'settings' | 'crm';
 export type LayoutType = 'grid' | 'list';
 export type ToneType = 'luxury' | 'professional' | 'speed';
+
+export interface Showing {
+  id: string;
+  listingId: string;
+  propertyName: string;
+  clientName: string;
+  clientPhone: string;
+  clientEmail: string;
+  showingDate: string;
+  agentName: string;
+  status: 'Interested' | 'Offer Received' | 'Follow-up' | 'Not Interested';
+  feedback: string;
+}
+
+export interface Offer {
+  id: string;
+  listingId: string;
+  propertyName: string;
+  clientName: string;
+  clientPhone: string;
+  offeredPrice: number;
+  counterPrice?: number;
+  tokenAmount?: number;
+  stage: 'Offer Received' | 'Counter Offer' | 'Token Received' | 'Deal Closed';
+  updatedAt: string;
+  notes?: string;
+}

@@ -221,7 +221,7 @@ CREATE TABLE legal_documentation (
 -- Table: internal_crm_metadata
 CREATE TABLE internal_crm_metadata (
     listing_id UUID PRIMARY KEY REFERENCES listings(id) ON DELETE CASCADE,
-    assigned_agent_id UUID, -- References Supabase Auth table
+    assigned_agent_id VARCHAR(150), -- Agent name or UUID
     assigned_freelancer_id UUID,
     internal_notes TEXT,
     next_followup_date DATE,
@@ -321,3 +321,36 @@ INSERT INTO furnishing_master (item_name) VALUES
 ('Refrigerator'),
 ('Microwave Oven')
 ON CONFLICT (item_name) DO NOTHING;
+
+-- ------------------------------------------
+-- 7. CLIENT SHOWINGS & PROPERTY OFFERS REGISTRIES
+-- ------------------------------------------
+
+CREATE TABLE IF NOT EXISTS client_showings (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    listing_id VARCHAR(50) NOT NULL,
+    property_name TEXT NOT NULL,
+    client_name VARCHAR(255) NOT NULL,
+    client_phone VARCHAR(50) NOT NULL,
+    client_email VARCHAR(150),
+    showing_date DATE NOT NULL DEFAULT CURRENT_DATE,
+    agent_name VARCHAR(150) NOT NULL,
+    status VARCHAR(50) NOT NULL DEFAULT 'Interested',
+    feedback TEXT,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS property_offers (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    listing_id VARCHAR(50) NOT NULL,
+    property_name TEXT NOT NULL,
+    client_name VARCHAR(255) NOT NULL,
+    client_phone VARCHAR(50) NOT NULL,
+    offered_price NUMERIC(12,2) NOT NULL,
+    counter_price NUMERIC(12,2),
+    token_amount NUMERIC(12,2) DEFAULT 0,
+    stage VARCHAR(50) NOT NULL DEFAULT 'Offer Received',
+    notes TEXT,
+    updated_at DATE DEFAULT CURRENT_DATE,
+    created_at TIMESTAMPTZ DEFAULT now()
+);

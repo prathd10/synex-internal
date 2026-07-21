@@ -5,7 +5,6 @@ import {
   LogOut, 
   Plus, 
   Search, 
-  Eye, 
   TrendingUp, 
   User, 
   HelpCircle, 
@@ -15,10 +14,20 @@ import {
   Compass,
   X,
   Menu,
-  SlidersHorizontal
+  SlidersHorizontal,
+  DollarSign,
+  Percent,
+  Calculator,
+  Users,
+  Phone,
+  Calendar,
+  PlusCircle,
+  Target,
+  Sparkles,
+  ArrowUpRight
 } from 'lucide-react';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import type { Listing, RoleType, TabType, LayoutType, ToneType } from './types';
+import type { Listing, RoleType, TabType, LayoutType, ToneType, Showing, Offer, PropertyType } from './types';
 
 interface CustomSelectProps {
   label?: string;
@@ -299,6 +308,146 @@ const INITIAL_DATABASE: Listing[] = [
     clicks: 25,
     status: "Draft",
     internalNotes: "Property listed in draft stage pending verify documentation on land boundary clearance. Do not share publicly."
+  },
+  {
+    id: "prop-7",
+    purpose: "Sale",
+    type: "Penthouse",
+    society: "Lodha World View",
+    locality: "Worli",
+    city: "Mumbai",
+    address: "Tower 1, Sky Suite 5202, Sea Face Road",
+    bhk: "4 BHK",
+    bathrooms: 5,
+    balconies: 3,
+    carpetArea: 2900,
+    floor: "52nd of 78 floors",
+    facing: "West",
+    furnishing: "Fully Furnished",
+    amenities: ["Air Conditioning", "Wardrobes", "Geysers", "Modular Kitchen", "Sofa Set", "Power Backup", "24x7 Security", "Private Elevator"],
+    price: 145000000,
+    deposit: 0,
+    maintenance: 22000,
+    negotiable: "Yes",
+    availableDate: "Immediate",
+    preferredTenant: "Anyone",
+    image: "/assets/penthouse.png",
+    marketingTags: ["Sea View", "Vastu Compliant", "Private Elevator", "Gated Community"],
+    marketingHighlights: "Sea View, Vastu Compliant, Private Elevator, Gated Community",
+    aiDescription: "Ultra-luxury 4 BHK Sky Residence in Lodha World View, Worli, Mumbai. Perched on the 52nd floor with panoramic Arabian Sea views. Includes private keycard elevator, Italian marble flooring, designer modular kitchen, and double-height living room.",
+    ownerName: "Anil Ambani",
+    ownerPhone: "+91 98200 11223",
+    ownerEmail: "anil.a@reliancegroup.com",
+    assignedAgent: "Amit Kumar",
+    views: 1240,
+    clicks: 210,
+    status: "Active",
+    internalNotes: "Ultra-high net worth seller. Requires proof of funds prior to scheduling physical inspections."
+  },
+  {
+    id: "prop-8",
+    purpose: "Rent",
+    type: "Apartment",
+    society: "Oberoi Sky City",
+    locality: "Borivali East",
+    city: "Mumbai",
+    address: "Tower B, Flat 1804, WEH Highway Junction",
+    bhk: "3",
+    bathrooms: 3,
+    balconies: 2,
+    carpetArea: 1420,
+    floor: "18th of 40 floors",
+    facing: "East",
+    furnishing: "Semi-Furnished",
+    amenities: ["Air Conditioning", "Wardrobes", "Geysers", "Modular Kitchen", "Power Backup", "24x7 Security"],
+    price: 110000,
+    deposit: 400000,
+    maintenance: 6500,
+    negotiable: "Yes",
+    availableDate: "2026-08-10",
+    preferredTenant: "Families",
+    image: "/assets/apartment.png",
+    marketingTags: ["Near Metro Station", "Vastu Compliant", "Gated Community"],
+    marketingHighlights: "Near Metro Station, Vastu Compliant, Gated Community",
+    aiDescription: "Elegant 3 BHK apartment in Oberoi Sky City, Borivali East, Mumbai. Direct view of Sanjay Gandhi National Park, direct skywalk access to Metro station. Fitted with split air conditioners and modular storage wardrobes.",
+    ownerName: "Sunita Kapoor",
+    ownerPhone: "+91 97690 44332",
+    ownerEmail: "sunita.kapoor@gmail.com",
+    assignedAgent: "Siddharth Sharma",
+    views: 810,
+    clicks: 94,
+    status: "Active",
+    internalNotes: "Owner prefers corporate family tenants with long-term lock-in contract."
+  },
+  {
+    id: "prop-9",
+    purpose: "Rent",
+    type: "Retail",
+    society: "DLF Cyber Hub Boulevard",
+    locality: "Cyber City Phase 2",
+    city: "Gurgaon",
+    address: "Unit G-12, Ground Floor Promenade",
+    bhk: "N/A",
+    bathrooms: 2,
+    balconies: 0,
+    carpetArea: 2200,
+    floor: "Ground Floor",
+    facing: "North-East",
+    furnishing: "Unfurnished",
+    amenities: ["Air Conditioning", "Power Backup", "24x7 Security"],
+    price: 250000,
+    deposit: 1000000,
+    maintenance: 20000,
+    negotiable: "Yes",
+    availableDate: "Immediate",
+    preferredTenant: "Corporate Lease",
+    image: "/assets/office.png",
+    marketingTags: ["High Footfall", "Ground Floor Frontage", "Near Metro Station"],
+    marketingHighlights: "High Footfall, Ground Floor Frontage, Near Metro Station",
+    aiDescription: "Prime commercial retail showroom space in DLF Cyber Hub, Gurgaon. Ground floor double-height frontage with massive footfall exposure across Cyber City. Ideal for luxury apparel retail, high-end cafe, or flagship tech store.",
+    ownerName: "DLF Commercial Assets",
+    ownerPhone: "+91 80000 55443",
+    ownerEmail: "retail.leasing@dlf.in",
+    assignedAgent: "Pooja Verma",
+    views: 630,
+    clicks: 78,
+    status: "Active",
+    internalNotes: "Ground floor unit with approved F&B hood ducting provisions. Contact DLF asset manager directly."
+  },
+  {
+    id: "prop-10",
+    purpose: "Sale",
+    type: "Villa",
+    society: "Prestige Golfshire",
+    locality: "Nandi Hills",
+    city: "Bangalore",
+    address: "Villa 108, Augusta Green Loop",
+    bhk: "4+",
+    bathrooms: 6,
+    balconies: 4,
+    carpetArea: 5400,
+    floor: "Ground + 2 Floors",
+    facing: "East",
+    furnishing: "Fully Furnished",
+    amenities: ["Air Conditioning", "Wardrobes", "Geysers", "Modular Kitchen", "Sofa Set", "Private Pool", "Golf Course Access", "24x7 Security"],
+    price: 98000000,
+    deposit: 0,
+    maintenance: 18000,
+    negotiable: "Yes",
+    availableDate: "Immediate",
+    preferredTenant: "Anyone",
+    image: "/assets/villa.png",
+    marketingTags: ["Private Pool", "Golf Course Facing", "Vastu Compliant", "Ultra Luxury"],
+    marketingHighlights: "Private Pool, Golf Course Facing, Vastu Compliant, Ultra Luxury",
+    aiDescription: "Palatial 5 BHK Luxury Golf Villa at Prestige Golfshire, Nandi Hills. Spans 5400 sq ft carpet area overlooking 18-hole championship golf greens. Comes with private temperature-controlled pool, jacuzzi, private elevator, and manicured lawns.",
+    ownerName: "Devendra Jhunjhunwala",
+    ownerPhone: "+91 99000 88776",
+    ownerEmail: "devendra.j@jhunjhunwalacorp.com",
+    assignedAgent: "Amit Kumar",
+    views: 1490,
+    clicks: 240,
+    status: "Active",
+    internalNotes: "Vastu audited by celebrity astrologer. Price includes lifetime golf club membership."
   }
 ];
 
@@ -311,6 +460,136 @@ const isAssignedToUser = (agentName: string, email: string) => {
   
   const nameParts = agentName.toLowerCase().split(/\s+/).filter(p => p.length > 2);
   return nameParts.some(part => cleanEmail.includes(part));
+};
+
+const INITIAL_SHOWINGS: Showing[] = [
+  {
+    id: "show-1",
+    listingId: "prop-2",
+    propertyName: "4+ BHK Villa in Sobha Meadows",
+    clientName: "Rajesh Mehta",
+    clientPhone: "+91 98201 54321",
+    clientEmail: "rajesh.mehta@outlook.com",
+    showingDate: "2026-07-15",
+    agentName: "Siddharth Sharma",
+    status: "Offer Received",
+    feedback: "Offered ₹4.2 Cr (asking ₹4.5 Cr). Under consideration."
+  },
+  {
+    id: "show-2",
+    listingId: "prop-1",
+    propertyName: "3 BHK Apartment in Prestige Heights",
+    clientName: "Priya Sen",
+    clientPhone: "+91 98112 34567",
+    clientEmail: "priya.sen@gmail.com",
+    showingDate: "2026-07-18",
+    agentName: "Amit Kumar",
+    status: "Interested",
+    feedback: "Liked the Vastu compliance. Negotiating security deposit terms."
+  },
+  {
+    id: "show-3",
+    listingId: "prop-3",
+    propertyName: "Office at One Horizon Hub",
+    clientName: "Vikram Malhotra",
+    clientPhone: "+91 99300 98765",
+    clientEmail: "vikram.malhotra@yahoo.com",
+    showingDate: "2026-07-20",
+    agentName: "Pooja Verma",
+    status: "Follow-up",
+    feedback: "Needs office fit-outs layout map. Next site visit scheduled for Friday."
+  }
+];
+
+const INITIAL_OFFERS: Offer[] = [
+  {
+    id: "offer-1",
+    listingId: "prop-2",
+    propertyName: "4+ BHK Villa in Sobha Meadows",
+    clientName: "Rajesh Mehta",
+    clientPhone: "+91 98201 54321",
+    offeredPrice: 42000000,
+    counterPrice: 43500000,
+    tokenAmount: 500000,
+    stage: "Counter Offer",
+    updatedAt: "2026-07-19",
+    notes: "Buyer initial offer ₹4.2 Cr. Seller countered at ₹4.35 Cr with ₹5 Lakh earnest deposit."
+  },
+  {
+    id: "offer-2",
+    listingId: "prop-1",
+    propertyName: "3 BHK Apartment in Prestige Heights",
+    clientName: "Priya Sen",
+    clientPhone: "+91 98112 34567",
+    offeredPrice: 42000,
+    counterPrice: 45000,
+    stage: "Offer Received",
+    updatedAt: "2026-07-18",
+    notes: "Tenant proposed ₹42,000/mo rent for 2 year lease term."
+  },
+  {
+    id: "offer-3",
+    listingId: "prop-3",
+    propertyName: "Office Unit 304 at One Horizon Hub",
+    clientName: "Vikram Malhotra",
+    clientPhone: "+91 99300 98765",
+    offeredPrice: 180000,
+    tokenAmount: 540000,
+    stage: "Token Received",
+    updatedAt: "2026-07-21",
+    notes: "3 months advance rent token paid. Lease agreement drafting in progress."
+  }
+];
+
+const calculateMatchScore = (
+  listing: Listing,
+  criteria: {
+    purpose: string;
+    type: string;
+    maxBudget: number | '';
+    locality: string;
+    bhk: string;
+  }
+): number => {
+  let score = 0;
+  let maxPossible = 0;
+
+  maxPossible += 25;
+  if (criteria.purpose === 'all' || listing.purpose === criteria.purpose) {
+    score += 25;
+  }
+
+  maxPossible += 25;
+  if (criteria.type === 'all' || listing.type === criteria.type) {
+    score += 25;
+  }
+
+  maxPossible += 25;
+  if (criteria.locality === 'all') {
+    score += 25;
+  } else if (listing.locality.toLowerCase().includes(criteria.locality.toLowerCase()) || listing.city.toLowerCase().includes(criteria.locality.toLowerCase())) {
+    score += 25;
+  } else {
+    score += 5;
+  }
+
+  maxPossible += 25;
+  if (criteria.bhk === 'all' || listing.bhk === criteria.bhk) {
+    score += 25;
+  }
+
+  maxPossible += 25;
+  if (!criteria.maxBudget || criteria.maxBudget === 0) {
+    score += 25;
+  } else if (listing.price <= Number(criteria.maxBudget)) {
+    score += 25;
+  } else if (listing.price <= Number(criteria.maxBudget) * 1.15) {
+    score += 15;
+  } else {
+    score += 5;
+  }
+
+  return Math.round((score / maxPossible) * 100);
 };
 
 export default function App() {
@@ -333,6 +612,47 @@ export default function App() {
   const setLayoutMode = layoutModeState[1];
   const [listings, setListings] = useState<Listing[]>([]);
   const [searchVal, setSearchVal] = useState('');
+
+  // Rate Calculator State
+  const [isCalcOpen, setIsCalcOpen] = useState(false);
+  const [calcMode, setCalcMode] = useState<'rate' | 'price'>('rate');
+  const [calcArea, setCalcArea] = useState('');
+  const [calcPrice, setCalcPrice] = useState('');
+  const [calcRate, setCalcRate] = useState('');
+
+  // Showings & CRM States
+  const [showings, setShowings] = useState<Showing[]>([]);
+  const [offers, setOffers] = useState<Offer[]>([]);
+  const [crmSubTab, setCrmSubTab] = useState<'allocation' | 'showings' | 'matcher' | 'offers'>('allocation');
+  const [isLogShowingOpen, setIsLogShowingOpen] = useState(false);
+  const [isLogOfferOpen, setIsLogOfferOpen] = useState(false);
+
+  // Form states for Logging Showing
+  const [showingListingId, setShowingListingId] = useState('');
+  const [showingClientName, setShowingClientName] = useState('');
+  const [showingClientPhone, setShowingClientPhone] = useState('');
+  const [showingClientEmail, setShowingClientEmail] = useState('');
+  const [showingDate, setShowingDate] = useState(new Date().toISOString().split('T')[0]);
+  const [showingAgent, setShowingAgent] = useState('Amit Kumar');
+  const [showingStatus, setShowingStatus] = useState<Showing['status']>('Interested');
+  const [showingFeedback, setShowingFeedback] = useState('');
+
+  // Form states for Logging Offer / Negotiation
+  const [targetOfferListingId, setTargetOfferListingId] = useState('');
+  const [offerClientName, setOfferClientName] = useState('');
+  const [offerClientPhone, setOfferClientPhone] = useState('');
+  const [offerPrice, setOfferPrice] = useState<number | ''>('');
+  const [offerCounterPrice, setOfferCounterPrice] = useState<number | ''>('');
+  const [offerTokenAmount, setOfferTokenAmount] = useState<number | ''>('');
+  const [offerStage, setOfferStage] = useState<Offer['stage']>('Offer Received');
+  const [offerNotes, setOfferNotes] = useState('');
+
+  // Matcher criteria state for CRM Matcher tab
+  const [matcherPurpose, setMatcherPurpose] = useState('all');
+  const [matcherType, setMatcherType] = useState('all');
+  const [matcherBudget, setMatcherBudget] = useState<number | ''>('');
+  const [matcherLocality, setMatcherLocality] = useState('all');
+  const [matcherBhk, setMatcherBhk] = useState('all');
 
   // Filters State
   const [filterPurpose, setFilterPurpose] = useState('all');
@@ -370,7 +690,7 @@ export default function App() {
 
   // Wizard Form Fields (INR Defaults)
   const [wPurpose, setWPurpose] = useState<'Rent' | 'Sale'>('Rent');
-  const [wType, setWType] = useState<'Apartment' | 'Villa' | 'Penthouse' | 'Office'>('Apartment');
+  const [wType, setWType] = useState<PropertyType>('Apartment');
   const [wSociety, setWSociety] = useState('');
   const [wLocality, setWLocality] = useState('');
   const [wCity, setWCity] = useState('');
@@ -523,7 +843,6 @@ export default function App() {
             const relations = item.listing_owners || [];
             const primaryOwnerRelation = relations[0] || {};
             const owner = primaryOwnerRelation.owners || {};
-
             return {
               id: item.id,
               purpose: item.transaction_type === 'Rent' ? 'Rent' : 'Sale',
@@ -538,15 +857,15 @@ export default function App() {
               carpetArea: specs.carpet_area_sqft || 0,
               floor: loc.floor ? `${loc.floor}th of ${loc.total_floors || 10} floors` : '4th floor',
               facing: specs.facing_direction || 'East',
-              furnishing: specs.furnishing_status || 'Semi-Furnished',
-              amenities: ["Swimming Pool", "24x7 Power Backup", "Visitor Parking"],
-              price: Number(fin.asking_price_inr) || 0,
-              deposit: Number(fin.token_amount_inr) || 0,
-              maintenance: Number(fin.maintenance_charge_inr) || 0,
+              furnishing: 'Semi-Furnished',
+              amenities: ['Power Backup', '24x7 Security'],
+              price: Number(fin.asking_price_inr || 0),
+              deposit: Number(fin.asking_price_inr ? fin.asking_price_inr * 2 : 0),
+              maintenance: Number(fin.maintenance_charge_inr || 0),
               negotiable: fin.is_negotiable ? 'Yes' : 'No',
-              availableDate: fin.available_date || '2026-08-01',
-              preferredTenant: fin.preferred_tenant || 'Anyone',
-              image: primaryMedia.file_url || '/assets/apartment.png',
+              availableDate: 'Immediate',
+              preferredTenant: 'Families',
+              image: primaryMedia.file_url || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=80',
               media: mediaMapped,
               marketingTags: crm.suitability_tags || [],
               marketingHighlights: crm.suitability_tags ? crm.suitability_tags.join(', ') : '',
@@ -562,8 +881,52 @@ export default function App() {
             };
           });
           setListings(list);
-          return;
         }
+
+        // Load Showings from Supabase
+        const { data: showingsData } = await supabaseClient
+          .from('client_showings')
+          .select('*')
+          .order('created_at', { ascending: false });
+          
+        if (showingsData && showingsData.length > 0) {
+          setShowings(showingsData.map((s: any) => ({
+            id: s.id,
+            listingId: s.listing_id,
+            propertyName: s.property_name,
+            clientName: s.client_name,
+            clientPhone: s.client_phone,
+            clientEmail: s.client_email || '',
+            showingDate: s.showing_date,
+            agentName: s.agent_name,
+            status: s.status,
+            feedback: s.feedback || ''
+          })));
+        }
+
+        // Load Offers from Supabase
+        const { data: offersData } = await supabaseClient
+          .from('property_offers')
+          .select('*')
+          .order('created_at', { ascending: false });
+          
+        if (offersData && offersData.length > 0) {
+          setOffers(offersData.map((o: any) => ({
+            id: o.id,
+            listingId: o.listing_id,
+            propertyName: o.property_name,
+            clientName: o.client_name,
+            clientPhone: o.client_phone,
+            offeredPrice: Number(o.offered_price),
+            counterPrice: o.counter_price ? Number(o.counter_price) : undefined,
+            tokenAmount: o.token_amount ? Number(o.token_amount) : undefined,
+            stage: o.stage,
+            updatedAt: o.updated_at || new Date().toISOString().split('T')[0],
+            notes: o.notes || ''
+          })));
+        }
+
+        return;
       } catch (err: any) {
         console.warn("Supabase fetch failed. Falling back to LocalStorage:", err.message);
       }
@@ -571,11 +934,29 @@ export default function App() {
 
     // Local Storage Loading
     const cached = localStorage.getItem('synex_listings');
-    if (cached) {
+    if (cached && JSON.parse(cached).length >= 10) {
       setListings(JSON.parse(cached));
     } else {
       setListings(INITIAL_DATABASE);
       localStorage.setItem('synex_listings', JSON.stringify(INITIAL_DATABASE));
+    }
+
+    // Showings Loading
+    const cachedShowings = localStorage.getItem('synex_showings');
+    if (cachedShowings) {
+      setShowings(JSON.parse(cachedShowings));
+    } else {
+      setShowings(INITIAL_SHOWINGS);
+      localStorage.setItem('synex_showings', JSON.stringify(INITIAL_SHOWINGS));
+    }
+
+    // Offers Loading
+    const cachedOffers = localStorage.getItem('synex_offers');
+    if (cachedOffers) {
+      setOffers(JSON.parse(cachedOffers));
+    } else {
+      setOffers(INITIAL_OFFERS);
+      localStorage.setItem('synex_offers', JSON.stringify(INITIAL_OFFERS));
     }
   };
 
@@ -635,12 +1016,60 @@ export default function App() {
     return isAssignedToUser(p.assignedAgent, activeSessionUser?.email || '');
   });
 
-  const totalViews = visibleListings.reduce((sum, p) => sum + (p.views || 0), 0);
-  const totalClicks = visibleListings.reduce((sum, p) => sum + (p.clicks || 0), 0);
-  const propertiesCount = visibleListings.length;
-  const topProperty = visibleListings.reduce((prev, current) => 
-    ((prev?.views || 0) > (current?.views || 0)) ? prev : current, visibleListings[0]
-  );
+  const formatPriceShort = (val: number) => {
+    if (val >= 10000000) {
+      return `₹${(val / 10000000).toFixed(2)} Cr`;
+    } else if (val >= 100000) {
+      return `₹${(val / 100000).toFixed(2)} L`;
+    }
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(val);
+  };
+
+  const getCommissionPotential = (p: Listing) => {
+    if (p.purpose === 'Sale') {
+      return (p.price || 0) * 0.02;
+    }
+    return p.price || 0; // 1 month's rent
+  };
+
+  const handleReassignAgent = async (listingId: string, newAgent: string) => {
+    if (activeRole !== 'admin') {
+      alert("Consultant profile has read-only access. Reassignment requires Admin privileges.");
+      return;
+    }
+
+    const updatedListings = listings.map(l => l.id === listingId ? { ...l, assignedAgent: newAgent } : l);
+    setListings(updatedListings);
+    localStorage.setItem('synex_listings', JSON.stringify(updatedListings));
+
+    if (supabaseClient) {
+      try {
+        await supabaseClient
+          .from('internal_crm_metadata')
+          .upsert({ listing_id: listingId, assigned_agent_id: newAgent });
+      } catch (err) {
+        console.warn("Supabase agent reassign error:", err);
+      }
+    }
+  };
+
+  const activeListingsCount = visibleListings.filter(p => p.status === 'Active').length;
+
+  const salesPipelineValue = visibleListings
+    .filter(p => p.purpose === 'Sale' && (p.status === 'Active' || p.status === 'Negotiation'))
+    .reduce((sum, p) => sum + (p.price || 0), 0);
+
+  const monthlyRentalPipeline = visibleListings
+    .filter(p => p.purpose === 'Rent' && (p.status === 'Active' || p.status === 'Negotiation'))
+    .reduce((sum, p) => sum + (p.price || 0), 0);
+
+  const commissionPotential = visibleListings
+    .filter(p => p.status === 'Active' || p.status === 'Negotiation')
+    .reduce((sum, p) => sum + getCommissionPotential(p), 0);
 
   // ----------------------------------------------------
   // FILTER PROCEDURES
@@ -1186,73 +1615,69 @@ export default function App() {
   // ----------------------------------------------------
   if (!activeSessionUser) {
     return (
-      <div className="flex w-screen h-screen bg-pastel-bg">
-        {/* Left Brand Panel */}
-        <div className="hidden md:flex flex-1 flex-col justify-between p-16 relative overflow-hidden bg-cover bg-center bg-no-repeat"
-             style={{ 
-               backgroundImage: `linear-gradient(rgba(24, 59, 50, 0.45), rgba(24, 59, 50, 0.75)), url('/assets/penthouse.png')` 
-             }}>
-          <div className="flex items-center gap-3 text-white">
-            <Home className="w-6 h-6 text-pastel-mint" />
-            <h2 className="font-display text-xl tracking-widest font-semibold">SYNEX REALTY</h2>
+      <div 
+        className="relative w-screen h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat overflow-hidden"
+        style={{ 
+          backgroundImage: `linear-gradient(135deg, rgba(15, 35, 29, 0.35) 0%, rgba(24, 59, 50, 0.25) 50%, rgba(10, 25, 20, 0.45) 100%), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=80')` 
+        }}
+      >
+        {/* Subtle Ambient Glow Blobs */}
+        <div className="absolute top-1/4 left-1/3 w-64 h-64 bg-brass/25 rounded-full blur-3xl pointer-events-none animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/3 w-72 h-72 bg-forest/30 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Compact Glassmorphic Login Card */}
+        <div className="relative z-10 w-full max-w-sm bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl p-6 sm:p-7 shadow-2xl shadow-black/30 animate-scale-up">
+          <div className="flex items-center gap-2 mb-2">
+            <Home className="w-4 h-4 text-forest" />
+            <span className="text-[9px] font-bold tracking-widest text-forest uppercase">Internal Broker Portal</span>
           </div>
-          <div className="max-w-lg">
-            <h1 className="font-serif text-5xl text-white font-light leading-tight mb-6">
-              Mumbai's Finest Real Estate Catalog
-            </h1>
-            <p className="text-white/80 leading-relaxed text-sm">
-              A secure internal management portal for brokers and agency administrators of Vastu Realtors Group to manage listing inventory, track catalog views, and write copy.
+
+          <h2 className="font-serif text-2xl sm:text-3xl text-forest font-light tracking-wide mb-0.5">Synex Realty</h2>
+          <p className="text-slate-600 text-xs mb-5">Enter credentials to access the inventory catalog.</p>
+
+          {authError && (
+            <div className="bg-red-50/90 backdrop-blur-sm border border-red-200 text-red-700 px-3 py-2 rounded-lg text-xs mb-4 font-medium">
+              {authError}
+            </div>
+          )}
+
+          <form onSubmit={handleAuthSubmit} className="space-y-4">
+            <div className="flex flex-col gap-1">
+              <label className="text-[9px] font-bold uppercase tracking-wider text-forest">Email Address</label>
+              <input 
+                type="email" 
+                className="w-full px-3.5 py-2 border border-white/80 rounded-lg focus:border-forest text-xs bg-white/70 focus:bg-white text-forest placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-forest/20 backdrop-blur-sm transition-all"
+                placeholder="e.g. broker@synex.com"
+                value={emailInput}
+                onChange={e => setEmailInput(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-[9px] font-bold uppercase tracking-wider text-forest">Password</label>
+              <input 
+                type="password" 
+                className="w-full px-3.5 py-2 border border-white/80 rounded-lg focus:border-forest text-xs bg-white/70 focus:bg-white text-forest placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-forest/20 backdrop-blur-sm transition-all"
+                placeholder="••••••••"
+                value={passwordInput}
+                onChange={e => setPasswordInput(e.target.value)}
+                required
+              />
+            </div>
+
+            <button 
+              type="submit" 
+              className="w-full bg-forest hover:bg-forest-light text-white py-2.5 rounded-lg font-semibold text-xs uppercase tracking-widest shadow-md shadow-forest/30 transition-all hover:scale-[1.01] active:scale-[0.99] mt-1"
+            >
+              Sign In
+            </button>
+          </form>
+
+          <div className="mt-5 pt-3 border-t border-white/40 text-center">
+            <p className="text-[10px] text-slate-600">
+              Need access? Contact administrator at <span className="font-semibold text-forest">admin@synex.com</span>
             </p>
-          </div>
-          <div className="text-white/40 text-xs">
-            © 2026 Synex Realty Consultants. All rights reserved.
-          </div>
-        </div>
-
-        {/* Right Form Panel */}
-        <div className="flex flex-1 items-center justify-center p-8 bg-pastel-bg">
-          <div className="w-full max-w-md bg-white border border-slate-200/80 rounded-xl p-10 shadow-sm">
-            <h2 className="font-serif text-3xl text-forest mb-2">Broker Login</h2>
-            <p className="text-slate-400 text-sm mb-8">Enter credentials to access the inventory catalog.</p>
-
-            {authError && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-2.5 rounded-lg text-xs mb-6">
-                {authError}
-              </div>
-            )}
-
-            <form onSubmit={handleAuthSubmit} className="space-y-5">
-              <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Email Address</label>
-                <input 
-                  type="email" 
-                  className="w-full px-4 py-2.5 border border-slate-200 rounded-md focus:border-forest text-sm bg-white"
-                  placeholder="e.g. broker@synex.com"
-                  value={emailInput}
-                  onChange={e => setEmailInput(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Password</label>
-                <input 
-                  type="password" 
-                  className="w-full px-4 py-2.5 border border-slate-200 rounded-md focus:border-forest text-sm bg-white"
-                  placeholder="••••••••"
-                  value={passwordInput}
-                  onChange={e => setPasswordInput(e.target.value)}
-                  required
-                />
-              </div>
-
-              <button 
-                type="submit" 
-                className="w-full bg-forest text-white py-3.5 rounded-md font-semibold text-xs uppercase tracking-wider transition-colors hover:bg-forest-light mt-4"
-              >
-                Sign In
-              </button>
-            </form>
           </div>
         </div>
       </div>
@@ -1310,8 +1735,14 @@ export default function App() {
               <span>Find Property</span>
             </button>
           </li>
+          <li className={`rounded-md ${activeTab === 'crm' ? 'bg-white font-semibold text-forest shadow-sm' : 'text-slate-400 hover:bg-white/40'}`}>
+            <button onClick={() => switchTab('crm')} className="flex items-center gap-3 w-full px-4 py-2.5 text-xs uppercase tracking-wider font-semibold text-left">
+              <Users className="w-4 h-4 text-forest shrink-0" />
+              <span>CRM Portal</span>
+            </button>
+          </li>
           {activeRole === 'admin' && (
-            <li className="rounded-md text-slate-400 hover:bg-white/40 border-t border-slate-200/50 mt-2 pt-2">
+            <li className={`rounded-md text-slate-400 hover:bg-white/40`}>
               <button onClick={() => { openNewWizard(); setIsMobileSidebarOpen(false); }} className="flex items-center gap-3 w-full px-4 py-2.5 text-xs uppercase tracking-wider font-semibold text-left">
                 <Plus className="w-4 h-4 text-forest shrink-0" />
                 <span>Add Property</span>
@@ -1373,75 +1804,122 @@ export default function App() {
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
                 <div className="bg-white border border-slate-200/80 p-6 rounded-lg shadow-sm">
                   <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-4">
-                    <span>Total Views</span>
-                    <Eye className="w-4 h-4 text-forest" />
-                  </div>
-                  <div className="font-serif text-4xl text-forest font-light mb-1">{totalViews.toLocaleString()}</div>
-                  <div className="text-[11px] text-green-700 font-semibold">+12% from last month</div>
-                </div>
-
-                <div className="bg-white border border-slate-200/80 p-6 rounded-lg shadow-sm">
-                  <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-4">
-                    <span>Clicks / Inquiries</span>
-                    <TrendingUp className="w-4 h-4 text-forest" />
-                  </div>
-                  <div className="font-serif text-4xl text-forest font-light mb-1">{totalClicks.toLocaleString()}</div>
-                  <div className="text-[11px] text-green-700 font-semibold">+5% from last week</div>
-                </div>
-
-                <div className="bg-white border border-slate-200/80 p-6 rounded-lg shadow-sm">
-                  <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-4">
-                    <span>Properties</span>
+                    <span>Active Listings</span>
                     <Home className="w-4 h-4 text-forest" />
                   </div>
-                  <div className="font-serif text-4xl text-forest font-light mb-1">{propertiesCount}</div>
-                  <div className="text-[11px] text-slate-400 font-medium">Active in catalog</div>
+                  <div className="font-serif text-4xl text-forest font-light mb-1">{activeListingsCount}</div>
+                  <div className="text-[11px] text-slate-500 font-medium">
+                    {visibleListings.filter(p => p.purpose === 'Sale' && p.status === 'Active').length} Sale • {visibleListings.filter(p => p.purpose === 'Rent' && p.status === 'Active').length} Rent
+                  </div>
                 </div>
 
                 <div className="bg-white border border-slate-200/80 p-6 rounded-lg shadow-sm">
                   <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-4">
-                    <span>Top Item</span>
-                    <Briefcase className="w-4 h-4 text-forest" />
+                    <span>Sales Pipeline Value</span>
+                    <TrendingUp className="w-4 h-4 text-forest" />
                   </div>
-                  <div className="font-serif text-[18px] leading-tight text-forest font-medium truncate mb-2 mt-1.5" title={topProperty?.society || 'None'}>
-                    {topProperty ? topProperty.society : 'None'}
+                  <div className="font-serif text-4xl text-forest font-light mb-1">{formatPriceShort(salesPipelineValue)}</div>
+                  <div className="text-[11px] text-slate-500 font-medium">
+                    {visibleListings.filter(p => p.purpose === 'Sale' && (p.status === 'Active' || p.status === 'Negotiation')).length} properties in pipeline
                   </div>
-                  <div className="text-[11px] text-slate-400 font-medium">Most engaged listing</div>
+                </div>
+
+                <div className="bg-white border border-slate-200/80 p-6 rounded-lg shadow-sm">
+                  <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-4">
+                    <span>Monthly Rental Pipeline</span>
+                    <DollarSign className="w-4 h-4 text-forest" />
+                  </div>
+                  <div className="font-serif text-4xl text-forest font-light mb-1">{formatPriceShort(monthlyRentalPipeline)}</div>
+                  <div className="text-[11px] text-slate-500 font-medium">
+                    {visibleListings.filter(p => p.purpose === 'Rent' && (p.status === 'Active' || p.status === 'Negotiation')).length} properties in pipeline
+                  </div>
+                </div>
+
+                <div className="bg-white border border-slate-200/80 p-6 rounded-lg shadow-sm">
+                  <div className="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-4">
+                    <span>Commission Potential</span>
+                    <Percent className="w-4 h-4 text-forest" />
+                  </div>
+                  <div className="font-serif text-4xl text-brass font-light mb-1">{formatPriceShort(commissionPotential)}</div>
+                  <div className="text-[11px] text-slate-500 font-medium">Est. 2% Sale / 1mo Rent</div>
                 </div>
               </div>
 
-              {/* Engagement report */}
+              {/* Pipeline & Commission Summary */}
               <div className="bg-white border border-slate-200/80 rounded-lg shadow-sm">
                 <div className="px-6 py-5 border-b border-slate-100 font-serif text-xl font-medium text-forest">
-                  Engagement Report
+                  Pipeline & Commission Summary
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
                       <tr className="border-b border-slate-200 text-[10px] font-bold uppercase tracking-wider text-slate-400">
                         <th className="px-6 py-4">Property</th>
-                        <th className="px-6 py-4 text-right">Views</th>
-                        <th className="px-6 py-4 text-right">Clicks / Inquiries</th>
-                        <th className="px-6 py-4 text-right">Total Engagement</th>
+                        <th className="px-6 py-4">Type & Purpose</th>
+                        <th className="px-6 py-4 text-right">Asking Price</th>
+                        <th className="px-6 py-4 text-right">Est. Commission</th>
+                        <th className="px-6 py-4 text-right">Agent & Status</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {[...visibleListings].sort((a,b)=>(b.views||0)-(a.views||0)).map(p => (
-                        <tr key={p.id} onClick={() => triggerListingDrawer(p.id)} className="border-b border-slate-100 hover:bg-slate-50/50 cursor-pointer transition-colors">
-                          <td className="px-6 py-4">
-                            <div className="flex items-center gap-3">
-                              <img className="w-11 h-11 rounded object-cover border border-slate-200" src={p.image} alt="Thumbnail" />
-                              <div>
-                                <span className="font-semibold text-forest text-sm">{p.bhk === 'N/A' ? '' : p.bhk + ' BHK '}{p.type} in {p.society}</span>
-                                <div className="text-[11px] text-slate-400">{p.locality}, {p.city}</div>
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 text-right font-serif text-base text-forest font-semibold">{p.views || 0}</td>
-                          <td className="px-6 py-4 text-right font-serif text-base text-forest font-semibold">{p.clicks || 0}</td>
-                          <td className="px-6 py-4 text-right font-serif text-base text-brass font-semibold">{(p.views || 0) + (p.clicks || 0)}</td>
-                        </tr>
-                      ))}
+                      {[...visibleListings]
+                        .sort((a, b) => getCommissionPotential(b) - getCommissionPotential(a))
+                        .map(p => {
+                          const commission = getCommissionPotential(p);
+                          return (
+                            <tr key={p.id} onClick={() => triggerListingDrawer(p.id)} className="border-b border-slate-100 hover:bg-slate-50/50 cursor-pointer transition-colors">
+                              <td className="px-6 py-4">
+                                <div className="flex items-center gap-3">
+                                  <img className="w-11 h-11 rounded object-cover border border-slate-200" src={p.image} alt="Thumbnail" />
+                                  <div>
+                                    <span className="font-semibold text-forest text-sm">{p.bhk === 'N/A' ? '' : p.bhk + ' BHK '}{p.type} in {p.society}</span>
+                                    <div className="text-[11px] text-slate-400">{p.locality}, {p.city}</div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="px-6 py-4">
+                                <div className="flex flex-col items-start gap-1">
+                                  <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase ${
+                                    p.purpose === 'Sale' ? 'bg-pastel-blue text-blue-800' : 'bg-pastel-lavender text-purple-800'
+                                  }`}>
+                                    {p.purpose}
+                                  </span>
+                                  <span className="text-[11px] text-slate-400">{p.type}</span>
+                                </div>
+                              </td>
+                              <td className="px-6 py-4 text-right">
+                                <span className="font-serif text-base text-forest font-semibold">
+                                  {formatPriceShort(p.price)}{p.purpose === 'Rent' && ' /mo'}
+                                </span>
+                                <div className="text-[11px] text-slate-400">
+                                  {p.purpose === 'Rent' ? `Deposit: ${formatPriceShort(p.deposit)}` : `Negotiable: ${p.negotiable}`}
+                                </div>
+                              </td>
+                              <td className="px-6 py-4 text-right">
+                                <span className="font-serif text-base text-brass font-semibold">
+                                  {formatPriceShort(commission)}
+                                </span>
+                                <div className="text-[11px] text-slate-400">
+                                  {p.purpose === 'Sale' ? '2% of asking' : '1 month rent'}
+                                </div>
+                              </td>
+                              <td className="px-6 py-4 text-right">
+                                <span className="text-xs text-slate-500 font-medium">{p.assignedAgent}</span>
+                                <div className="mt-1">
+                                  <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase ${
+                                    p.status === 'Active' ? 'bg-pastel-mint text-forest' : 
+                                    p.status === 'Negotiation' ? 'bg-pastel-gold text-amber-800' : 
+                                    p.status === 'Sold' ? 'bg-slate-200 text-slate-600' : 
+                                    p.status === 'Rented' ? 'bg-slate-200 text-slate-600' : 
+                                    'bg-pastel-peach text-red-800'
+                                  }`}>
+                                    {p.status}
+                                  </span>
+                                </div>
+                              </td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </table>
                 </div>
@@ -1830,19 +2308,30 @@ export default function App() {
               {/* END Filter Drawer */}
 
               {/* Page Header Row */}
-              <div className="flex justify-between items-center shrink-0">
+              <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 shrink-0 mb-4">
                 <div>
-                  <h2 className="font-serif text-4xl text-forest font-light">Find Property</h2>
+                  <h2 className="font-serif text-3xl sm:text-4xl text-forest font-light">Find Property</h2>
                   <p className="text-slate-400 text-xs mt-0.5">Browse and filter the listings database.</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="flex bg-slate-200 p-0.5 rounded-md border border-slate-200/50">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <div className="flex bg-slate-200 p-0.5 rounded-md border border-slate-200/50 shrink-0">
                     <button onClick={() => setLayoutMode('grid')} className={`px-3 py-1.5 rounded text-xs font-semibold ${layoutMode === 'grid' ? 'bg-white text-forest shadow-sm' : 'text-slate-400'}`}>Grid</button>
                     <button onClick={() => setLayoutMode('list')} className={`px-3 py-1.5 rounded text-xs font-semibold ${layoutMode === 'list' ? 'bg-white text-forest shadow-sm' : 'text-slate-400'}`}>List</button>
                   </div>
                   <button
+                    onClick={() => setIsCalcOpen(prev => !prev)}
+                    className={`flex items-center gap-2 border px-4 py-2 rounded-md text-xs font-semibold transition-colors shrink-0 ${
+                      isCalcOpen
+                        ? 'bg-brass border-brass text-white hover:bg-brass/90'
+                        : 'bg-white border-slate-200 text-forest hover:bg-slate-50'
+                    }`}
+                  >
+                    <Calculator className="w-3.5 h-3.5" />
+                    Rate Calculator
+                  </button>
+                  <button
                     onClick={() => setIsFilterDrawerOpen(true)}
-                    className="flex items-center gap-2 bg-forest text-white px-4 py-2 rounded-md text-xs font-semibold hover:bg-forest-light transition-colors"
+                    className="flex items-center gap-2 bg-forest text-white px-4 py-2 rounded-md text-xs font-semibold hover:bg-forest-light transition-colors shrink-0"
                   >
                     <SlidersHorizontal className="w-3.5 h-3.5" />
                     Filters
@@ -1853,17 +2342,125 @@ export default function App() {
               {/* Full-Width Results Area */}
               <div className="flex flex-col gap-4 flex-grow overflow-y-auto max-h-[75vh] pr-1">
                   
-                  {/* Local Search Bar */}
-                  <div className="relative w-full shrink-0">
-                    <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                    <input 
-                      type="text" 
-                      className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-lg focus:border-forest text-sm bg-white shadow-sm" 
-                      placeholder="Type keywords (society, locality, address, crm tags, assigned agent)..." 
-                      value={searchVal}
-                      onChange={e => setSearchVal(e.target.value)}
-                    />
-                  </div>
+                    {/* Local Search Bar */}
+                    <div className="relative w-full shrink-0">
+                      <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                      <input 
+                        type="text" 
+                        className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-lg focus:border-forest text-sm bg-white shadow-sm" 
+                        placeholder="Type keywords (society, locality, address, crm tags, assigned agent)..." 
+                        value={searchVal}
+                        onChange={e => setSearchVal(e.target.value)}
+                      />
+                    </div>
+
+                    {/* Rate & Price Valuer Panel */}
+                    {isCalcOpen && (
+                      <div className="bg-white border border-slate-200/85 rounded-xl p-6 shadow-sm mb-2 mt-2 animate-fade-in flex flex-col md:flex-row gap-6 items-stretch shrink-0">
+                        <div className="flex-grow space-y-4">
+                          <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+                            <h3 className="font-serif text-lg font-semibold text-forest flex items-center gap-2">
+                              <Calculator className="w-4 h-4 text-brass" />
+                              Rate & Price Valuer
+                            </h3>
+                            <div className="flex bg-slate-100 p-0.5 rounded-md border border-slate-200/50">
+                              <button 
+                                onClick={() => { setCalcMode('rate'); setCalcPrice(''); setCalcRate(''); }} 
+                                className={`px-3 py-1 rounded-sm text-[10px] uppercase tracking-wider font-semibold transition-all ${calcMode === 'rate' ? 'bg-white text-forest shadow-sm font-bold' : 'text-slate-400'}`}
+                              >
+                                Calculate Rate
+                              </button>
+                              <button 
+                                onClick={() => { setCalcMode('price'); setCalcPrice(''); setCalcRate(''); }} 
+                                className={`px-3 py-1 rounded-sm text-[10px] uppercase tracking-wider font-semibold transition-all ${calcMode === 'price' ? 'bg-white text-forest shadow-sm font-bold' : 'text-slate-400'}`}
+                              >
+                                Calculate Price
+                              </button>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="flex flex-col gap-1.5">
+                              <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Carpet Area (sqft)</label>
+                              <input 
+                                type="number" 
+                                className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-slate-50/50"
+                                placeholder="e.g. 1500"
+                                value={calcArea}
+                                onChange={e => setCalcArea(e.target.value)}
+                              />
+                            </div>
+
+                            {calcMode === 'rate' ? (
+                              <div className="flex flex-col gap-1.5">
+                                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Total Price (₹)</label>
+                                <input 
+                                  type="number" 
+                                  className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-slate-50/50"
+                                  placeholder="e.g. 35000000"
+                                  value={calcPrice}
+                                  onChange={e => setCalcPrice(e.target.value)}
+                                />
+                              </div>
+                            ) : (
+                              <div className="flex flex-col gap-1.5">
+                                <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Rate per Sq. Ft. (₹/sqft)</label>
+                                <input 
+                                  type="number" 
+                                  className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-slate-50/50"
+                                  placeholder="e.g. 15000"
+                                  value={calcRate}
+                                  onChange={e => setCalcRate(e.target.value)}
+                                />
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {(() => {
+                          const parsedCalcArea = parseFloat(calcArea) || 0;
+                          const parsedCalcPrice = parseFloat(calcPrice) || 0;
+                          const parsedCalcRate = parseFloat(calcRate) || 0;
+
+                          let calculatedRateValue = 0;
+                          if (calcMode === 'rate' && parsedCalcArea > 0 && parsedCalcPrice > 0) {
+                            calculatedRateValue = Math.round(parsedCalcPrice / parsedCalcArea);
+                          }
+
+                          let calculatedPriceValue = 0;
+                          if (calcMode === 'price' && parsedCalcArea > 0 && parsedCalcRate > 0) {
+                            calculatedPriceValue = Math.round(parsedCalcRate * parsedCalcArea);
+                          }
+
+                          return (
+                            <div className="w-full md:w-60 bg-pastel-bg/50 border border-slate-200/50 rounded-xl p-4 flex flex-col justify-center items-center text-center shrink-0">
+                              <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                                {calcMode === 'rate' ? 'Calculated Rate' : 'Calculated Price'}
+                              </span>
+                              {calcMode === 'rate' ? (
+                                <div>
+                                  <div className="font-serif text-2xl text-forest font-semibold mb-1">
+                                    {calculatedRateValue > 0 ? `${formatCurrency(calculatedRateValue)}` : '—'}
+                                  </div>
+                                  <div className="text-[10px] text-slate-400 font-medium">
+                                    {calculatedRateValue > 0 ? `${formatPriceShort(calculatedRateValue)} per sqft` : 'Enter Area & Price'}
+                                  </div>
+                                </div>
+                              ) : (
+                                <div>
+                                  <div className="font-serif text-2xl text-forest font-semibold mb-1">
+                                    {calculatedPriceValue > 0 ? `${formatCurrency(calculatedPriceValue)}` : '—'}
+                                  </div>
+                                  <div className="text-[10px] text-slate-400 font-medium">
+                                    {calculatedPriceValue > 0 ? `${formatPriceShort(calculatedPriceValue)} valuation` : 'Enter Area & Rate'}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })()}
+                      </div>
+                    )}
 
                   {/* Results summary counter */}
                   <div className="flex justify-between items-center text-xs text-slate-400 font-semibold shrink-0">
@@ -1906,8 +2503,15 @@ export default function App() {
                                 <span className="flex items-center gap-0.5"><TrendingUp className="w-3 h-3 shrink-0" /> {p.facing.substring(0,5)}</span>
                                 <span className="flex items-center gap-0.5"><CheckCircle2 className="w-3 h-3 shrink-0" /> {p.furnishing.split('-')[0].split(' ')[0]}</span>
                               </div>
-                              <div className="font-serif text-sm sm:text-base md:text-xl text-forest font-semibold mt-auto flex items-baseline gap-0.5">
-                                {formatCurrency(p.price)} <span className="font-sans text-[8px] md:text-[10px] font-medium text-slate-400">{priceLabel}</span>
+                              <div className="font-serif text-sm sm:text-base md:text-xl text-forest font-semibold mt-auto flex justify-between items-baseline gap-1">
+                                <div>
+                                  {formatCurrency(p.price)} <span className="font-sans text-[8px] md:text-[10px] font-medium text-slate-400">{priceLabel}</span>
+                                </div>
+                                {p.carpetArea > 0 && (
+                                  <span className="font-sans text-[9px] md:text-xs text-brass font-medium whitespace-nowrap">
+                                    {formatCurrency(Math.round(p.price / p.carpetArea))}/sqft{p.purpose === 'Rent' && '/mo'}
+                                  </span>
+                                )}
                               </div>
                               <div className="border-t border-slate-100 pt-1.5 md:pt-3 mt-2 md:mt-4 flex items-center justify-between">
                                 <div className="flex items-center gap-1.5">
@@ -1952,8 +2556,15 @@ export default function App() {
                                 </td>
                                 <td className="px-6 py-4 font-semibold text-slate-500">{p.type} ({p.purpose})</td>
                                 <td className="px-6 py-4 font-semibold text-slate-500">{p.locality}</td>
-                                <td className="px-6 py-4 font-serif text-base text-forest font-semibold">
-                                  {formatCurrency(p.price)} <span className="font-sans text-[10px] text-slate-400">{priceLabel}</span>
+                                <td className="px-6 py-4">
+                                  <span className="font-serif text-base text-forest font-semibold">
+                                    {formatCurrency(p.price)} <span className="font-sans text-[10px] text-slate-400">{priceLabel}</span>
+                                  </span>
+                                  {p.carpetArea > 0 && (
+                                    <div className="text-[10px] text-brass font-medium mt-0.5">
+                                      {formatCurrency(Math.round(p.price / p.carpetArea))}/sqft{p.purpose === 'Rent' && '/mo'}
+                                    </div>
+                                  )}
                                 </td>
                                 <td className="px-6 py-4 text-slate-500">{p.assignedAgent}</td>
                                 <td className="px-6 py-4">
@@ -2044,6 +2655,885 @@ export default function App() {
                   </table>
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* TAB: CRM PORTAL */}
+          {activeTab === 'crm' && (
+            <div className="animate-fade-in flex flex-col h-full gap-6">
+              
+              {/* Header */}
+              <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 shrink-0 mb-4">
+                <div>
+                  <h2 className="font-serif text-3xl sm:text-4xl text-forest font-light">CRM Portal</h2>
+                  <p className="text-slate-400 text-xs mt-0.5">Manage team property allocations and track client showings registry.</p>
+                </div>
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <div className="flex bg-slate-200 p-0.5 rounded-md border border-slate-200/50 shrink-0">
+                    <button 
+                      onClick={() => setCrmSubTab('allocation')} 
+                      className={`px-3 py-1.5 rounded text-xs font-semibold ${crmSubTab === 'allocation' ? 'bg-white text-forest shadow-sm' : 'text-slate-400'}`}
+                    >
+                      Team Allocations
+                    </button>
+                    <button 
+                      onClick={() => setCrmSubTab('showings')} 
+                      className={`px-3 py-1.5 rounded text-xs font-semibold ${crmSubTab === 'showings' ? 'bg-white text-forest shadow-sm' : 'text-slate-400'}`}
+                    >
+                      Showings Logs
+                    </button>
+                    <button 
+                      onClick={() => setCrmSubTab('matcher')} 
+                      className={`px-3 py-1.5 rounded text-xs font-semibold ${crmSubTab === 'matcher' ? 'bg-white text-forest shadow-sm' : 'text-slate-400'}`}
+                    >
+                      Smart Matcher
+                    </button>
+                    <button 
+                      onClick={() => setCrmSubTab('offers')} 
+                      className={`px-3 py-1.5 rounded text-xs font-semibold ${crmSubTab === 'offers' ? 'bg-white text-forest shadow-sm' : 'text-slate-400'}`}
+                    >
+                      Active Offers
+                    </button>
+                  </div>
+                  {crmSubTab === 'showings' && (
+                    <button
+                      onClick={() => {
+                        setIsLogShowingOpen(true);
+                        setShowingClientName('');
+                        setShowingClientPhone('');
+                        setShowingClientEmail('');
+                        setShowingFeedback('');
+                        if (visibleListings.length > 0) {
+                          setShowingListingId(visibleListings[0].id);
+                        } else {
+                          setShowingListingId('');
+                        }
+                      }}
+                      className="flex items-center gap-2 bg-forest text-white px-4 py-2 rounded-md text-xs font-semibold hover:bg-forest-light transition-colors shrink-0"
+                    >
+                      <PlusCircle className="w-3.5 h-3.5" />
+                      Log Site Showing
+                    </button>
+                  )}
+                  {crmSubTab === 'offers' && (
+                    <button
+                      onClick={() => {
+                        setIsLogOfferOpen(true);
+                        setOfferClientName('');
+                        setOfferClientPhone('');
+                        setOfferPrice('');
+                        setOfferCounterPrice('');
+                        setOfferTokenAmount('');
+                        setOfferNotes('');
+                        setOfferStage('Offer Received');
+                        if (visibleListings.length > 0) {
+                          setTargetOfferListingId(visibleListings[0].id);
+                        } else {
+                          setTargetOfferListingId('');
+                        }
+                      }}
+                      className="flex items-center gap-2 bg-forest text-white px-4 py-2 rounded-md text-xs font-semibold hover:bg-forest-light transition-colors shrink-0"
+                    >
+                      <PlusCircle className="w-3.5 h-3.5" />
+                      Log / Update Offer
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Sub-tab 1: Team Allocation view */}
+              {crmSubTab === 'allocation' && (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow overflow-y-auto max-h-[75vh]">
+                  {['Amit Kumar', 'Siddharth Sharma', 'Pooja Verma'].map(agentName => {
+                    const agentProperties = visibleListings.filter(p => p.assignedAgent === agentName);
+                    const agentInitials = agentName.split(' ').map(n=>n[0]).join('');
+                    
+                    return (
+                      <div key={agentName} className="bg-white border border-slate-200/80 rounded-xl p-5 shadow-sm flex flex-col h-full min-h-[400px]">
+                        {/* Agent Header */}
+                        <div className="flex items-center gap-3 pb-4 border-b border-slate-100 mb-4 shrink-0">
+                          <span className="w-10 h-10 rounded-full bg-pastel-sidebar flex items-center justify-center text-xs font-bold text-forest border border-slate-200">
+                            {agentInitials}
+                          </span>
+                          <div>
+                            <h4 className="font-serif text-base font-semibold text-forest">{agentName}</h4>
+                            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">
+                              {agentProperties.length} Properties Handled
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Agent Properties List */}
+                        <div className="flex-grow overflow-y-auto space-y-3 pr-1 scrollbar-thin">
+                          {agentProperties.length === 0 ? (
+                            <div className="text-center py-10 text-xs text-slate-400">No properties assigned yet.</div>
+                          ) : (
+                            agentProperties.map(p => (
+                              <div 
+                                key={p.id} 
+                                onClick={() => triggerListingDrawer(p.id)}
+                                className="border border-slate-100 hover:border-brass/35 bg-pastel-bg/25 hover:bg-white rounded-lg p-3 cursor-pointer shadow-sm hover:shadow transition-all flex gap-3 items-center"
+                              >
+                                <img src={p.image} className="w-12 h-12 rounded object-cover border border-slate-200 shrink-0" alt="Thumb" />
+                                <div className="min-w-0 flex-grow">
+                                  <h5 className="font-semibold text-forest text-xs truncate">
+                                    {p.bhk === 'N/A' ? '' : p.bhk + ' BHK '}{p.type} in {p.society}
+                                  </h5>
+                                  <div className="text-[10px] text-slate-400 truncate mb-1">{p.locality}, {p.city}</div>
+                                  <div className="flex justify-between items-center mt-1">
+                                    <span className="font-serif text-[11px] font-bold text-forest">
+                                      {formatPriceShort(p.price)}{p.purpose === 'Rent' && ' /mo'}
+                                    </span>
+                                    {activeRole === 'admin' ? (
+                                      <select
+                                        value={p.assignedAgent}
+                                        onClick={e => e.stopPropagation()}
+                                        onChange={e => {
+                                          e.stopPropagation();
+                                          handleReassignAgent(p.id, e.target.value);
+                                        }}
+                                        className="text-[9px] border border-slate-200 rounded px-1.5 py-0.5 bg-white text-forest font-semibold focus:border-forest"
+                                      >
+                                        <option value="Amit Kumar">Amit Kumar</option>
+                                        <option value="Siddharth Sharma">Siddharth Sharma</option>
+                                        <option value="Pooja Verma">Pooja Verma</option>
+                                      </select>
+                                    ) : (
+                                      <span className={`px-1.5 py-0.5 rounded text-[7px] font-bold uppercase ${
+                                        p.status === 'Active' ? 'bg-pastel-mint text-forest' : 
+                                        p.status === 'Negotiation' ? 'bg-pastel-gold text-amber-800' : 'bg-slate-200 text-slate-600'
+                                      }`}>
+                                        {p.status}
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            ))
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* Sub-tab 2: Client Showings Registry */}
+              {crmSubTab === 'showings' && (
+                <div className="bg-white border border-slate-200/80 rounded-xl shadow-sm overflow-hidden flex-grow flex flex-col max-h-[75vh]">
+                  <div className="overflow-x-auto flex-grow scrollbar-thin">
+                    <table className="w-full text-left border-collapse text-xs">
+                      <thead>
+                        <tr className="border-b border-slate-200 bg-slate-50 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                          <th className="px-6 py-4">Client & Contact Details</th>
+                          <th className="px-6 py-4">Property Shown</th>
+                          <th className="px-6 py-4">Date & Broker</th>
+                          <th className="px-6 py-4">Feedback & Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {showings.length === 0 ? (
+                          <tr>
+                            <td colSpan={4} className="text-center py-20 text-sm text-slate-400">
+                              No site visits logged yet. Use "Log Site Showing" to record client visits.
+                            </td>
+                          </tr>
+                        ) : (
+                          showings.map(s => {
+                            const matchedListing = listings.find(l => l.id === s.listingId);
+                            return (
+                              <tr key={s.id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                                <td className="px-6 py-4">
+                                  <div className="flex flex-col gap-0.5">
+                                    <span className="font-semibold text-forest text-sm">{s.clientName}</span>
+                                    <div className="flex items-center gap-1 text-[10px] text-slate-500 font-medium">
+                                      <Phone className="w-3 h-3 text-slate-400" /> {s.clientPhone}
+                                    </div>
+                                    <span className="text-[10px] text-slate-400">{s.clientEmail}</span>
+                                  </div>
+                                </td>
+                                <td className="px-6 py-4">
+                                  {matchedListing ? (
+                                    <div 
+                                      onClick={() => triggerListingDrawer(matchedListing.id)}
+                                      className="flex items-center gap-3 cursor-pointer group"
+                                    >
+                                      <img src={matchedListing.image} className="w-10 h-10 rounded object-cover border border-slate-200" alt="" />
+                                      <div>
+                                        <span className="font-semibold text-forest text-xs group-hover:text-brass transition-colors block">
+                                          {matchedListing.bhk === 'N/A' ? '' : matchedListing.bhk + ' BHK '}{matchedListing.type}
+                                        </span>
+                                        <span className="text-[10px] text-slate-400 block">{matchedListing.society}, {matchedListing.locality}</span>
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <span className="text-slate-400 font-medium text-xs">{s.propertyName}</span>
+                                  )}
+                                </td>
+                                <td className="px-6 py-4">
+                                  <div className="flex flex-col gap-0.5">
+                                    <span className="flex items-center gap-1 text-slate-600 font-medium">
+                                      <Calendar className="w-3 h-3 text-slate-400" /> {s.showingDate}
+                                    </span>
+                                    <span className="text-[10px] text-slate-400">Assigned Broker: {s.agentName}</span>
+                                  </div>
+                                </td>
+                                <td className="px-6 py-4">
+                                  <div className="flex flex-col gap-1.5 max-w-sm">
+                                    <div>
+                                      <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase ${
+                                        s.status === 'Offer Received' ? 'bg-pastel-mint text-green-800' :
+                                        s.status === 'Interested' ? 'bg-pastel-blue text-blue-800' :
+                                        s.status === 'Follow-up' ? 'bg-pastel-gold text-amber-800' :
+                                        'bg-pastel-peach text-red-800'
+                                      }`}>
+                                        {s.status}
+                                      </span>
+                                    </div>
+                                    <p className="text-[11px] text-slate-500 italic font-normal leading-normal">"{s.feedback}"</p>
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              {/* Log Showing Inline Modal */}
+              {isLogShowingOpen && (
+                <div className="fixed inset-0 bg-slate-900/30 backdrop-blur-[1px] flex items-center justify-center z-50 animate-fade-in" onClick={() => setIsLogShowingOpen(false)}>
+                  <div className="bg-white border border-slate-200 shadow-2xl rounded-xl w-[480px] max-w-[90%] flex flex-col p-6 animate-scale-up" onClick={e => e.stopPropagation()}>
+                    <div className="flex justify-between items-center pb-3 border-b border-slate-100 mb-4 shrink-0">
+                      <h3 className="font-serif text-xl font-semibold text-forest flex items-center gap-2">
+                        <PlusCircle className="w-5 h-5 text-brass" /> Log Client Site Showing
+                      </h3>
+                      <button onClick={() => setIsLogShowingOpen(false)} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
+                    </div>
+
+                    <form onSubmit={async (e) => {
+                      e.preventDefault();
+                      const targetProperty = listings.find(l => l.id === showingListingId);
+                      const newShowing: Showing = {
+                        id: `show-${Date.now()}`,
+                        listingId: showingListingId,
+                        propertyName: targetProperty ? `${targetProperty.bhk === 'N/A' ? '' : targetProperty.bhk + ' BHK '}${targetProperty.type} in ${targetProperty.society}` : 'Unknown Property',
+                        clientName: showingClientName,
+                        clientPhone: showingClientPhone,
+                        clientEmail: showingClientEmail,
+                        showingDate: showingDate,
+                        agentName: showingAgent,
+                        status: showingStatus,
+                        feedback: showingFeedback
+                      };
+
+                      if (supabaseClient) {
+                        try {
+                          await supabaseClient.from('client_showings').insert([{
+                            listing_id: newShowing.listingId,
+                            property_name: newShowing.propertyName,
+                            client_name: newShowing.clientName,
+                            client_phone: newShowing.clientPhone,
+                            client_email: newShowing.clientEmail,
+                            showing_date: newShowing.showingDate,
+                            agent_name: newShowing.agentName,
+                            status: newShowing.status,
+                            feedback: newShowing.feedback
+                          }]);
+                        } catch (err) {
+                          console.warn("Supabase showings insert error:", err);
+                        }
+                      }
+
+                      const updated = [newShowing, ...showings];
+                      setShowings(updated);
+                      localStorage.setItem('synex_showings', JSON.stringify(updated));
+                      setIsLogShowingOpen(false);
+                    }} className="space-y-4 text-xs">
+                      
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="flex flex-col gap-1.5 col-span-2">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Select Property</label>
+                          <select 
+                            value={showingListingId} 
+                            onChange={e => setShowingListingId(e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            required
+                          >
+                            {visibleListings.map(l => (
+                              <option key={l.id} value={l.id}>
+                                {l.bhk === 'N/A' ? '' : l.bhk + ' BHK '}{l.type} - {l.society} ({l.locality})
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div className="flex flex-col gap-1.5 col-span-2">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Client Name</label>
+                          <input 
+                            type="text" 
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            placeholder="e.g. Ramesh Patel"
+                            value={showingClientName}
+                            onChange={e => setShowingClientName(e.target.value)}
+                            required
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Client Phone</label>
+                          <input 
+                            type="text" 
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            placeholder="e.g. +91 98200 98200"
+                            value={showingClientPhone}
+                            onChange={e => setShowingClientPhone(e.target.value)}
+                            required
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Client Email</label>
+                          <input 
+                            type="email" 
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            placeholder="e.g. client@gmail.com"
+                            value={showingClientEmail}
+                            onChange={e => setShowingClientEmail(e.target.value)}
+                            required
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Showing Date</label>
+                          <input 
+                            type="date" 
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            value={showingDate}
+                            onChange={e => setShowingDate(e.target.value)}
+                            required
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Showing Broker</label>
+                          <select 
+                            value={showingAgent} 
+                            onChange={e => setShowingAgent(e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            required
+                          >
+                            <option value="Amit Kumar">Amit Kumar</option>
+                            <option value="Siddharth Sharma">Siddharth Sharma</option>
+                            <option value="Pooja Verma">Pooja Verma</option>
+                          </select>
+                        </div>
+
+                        <div className="flex flex-col gap-1.5 col-span-2">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Showing Feedback Status</label>
+                          <div className="grid grid-cols-4 gap-2">
+                            {(['Interested', 'Offer Received', 'Follow-up', 'Not Interested'] as Showing['status'][]).map(status => (
+                              <button
+                                key={status}
+                                type="button"
+                                onClick={() => setShowingStatus(status)}
+                                className={`py-1.5 border rounded text-[9px] font-bold text-center transition-all ${
+                                  showingStatus === status 
+                                    ? 'bg-forest border-forest text-white' 
+                                    : 'bg-slate-50 border-slate-200 text-slate-500 hover:bg-slate-100'
+                                }`}
+                              >
+                                {status}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col gap-1.5 col-span-2">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Client Feedback / Comments</label>
+                          <textarea 
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-16 resize-none"
+                            placeholder="e.g. Liked the location, requested details on layout configurations..."
+                            value={showingFeedback}
+                            onChange={e => setShowingFeedback(e.target.value)}
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex justify-end gap-3 pt-3 border-t border-slate-100 mt-4 shrink-0">
+                        <button 
+                          type="button" 
+                          onClick={() => setIsLogShowingOpen(false)}
+                          className="px-4 py-2 border border-slate-200 rounded-lg text-xs font-semibold text-slate-500 bg-white hover:bg-slate-50 transition-colors"
+                        >
+                          Cancel
+                        </button>
+                        <button 
+                          type="submit" 
+                          className="bg-forest hover:bg-forest-light text-white font-semibold text-xs py-2 px-5 rounded-lg transition-colors"
+                        >
+                          Log Visit
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              )}
+
+              {/* Sub-tab 3: Smart Matcher */}
+              {crmSubTab === 'matcher' && (
+                <div className="flex flex-col lg:flex-row gap-6 flex-grow overflow-y-auto max-h-[75vh]">
+                  {/* Left: Buyer Requirements Form */}
+                  <div className="w-full lg:w-80 bg-white border border-slate-200/80 rounded-xl p-5 shadow-sm shrink-0">
+                    <h4 className="font-serif text-lg font-semibold text-forest mb-1 flex items-center gap-2">
+                      <Target className="w-4 h-4 text-brass" /> Client Requirements
+                    </h4>
+                    <p className="text-[11px] text-slate-400 mb-4">Set buyer search criteria to compute match affinity scores across active inventory.</p>
+
+                    <div className="space-y-3 text-xs">
+                      <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Transaction Purpose</label>
+                        <select 
+                          value={matcherPurpose} 
+                          onChange={e => setMatcherPurpose(e.target.value)}
+                          className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                        >
+                          <option value="all">Any (Rent or Sale)</option>
+                          <option value="Sale">Buy / Purchase</option>
+                          <option value="Rent">Lease / Rent</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Property Type</label>
+                        <select 
+                          value={matcherType} 
+                          onChange={e => setMatcherType(e.target.value)}
+                          className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                        >
+                          <option value="all">All Property Types</option>
+                          <option value="Apartment">Apartment</option>
+                          <option value="Villa">Villa</option>
+                          <option value="Penthouse">Penthouse</option>
+                          <option value="Office">Office Space</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Max Budget Target (₹)</label>
+                        <input 
+                          type="number" 
+                          placeholder="e.g. 45000000"
+                          value={matcherBudget} 
+                          onChange={e => setMatcherBudget(e.target.value ? Number(e.target.value) : '')}
+                          className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Preferred Locality / City</label>
+                        <select 
+                          value={matcherLocality} 
+                          onChange={e => setMatcherLocality(e.target.value)}
+                          className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                        >
+                          <option value="all">All Locations</option>
+                          {Array.from(new Set(visibleListings.map(l => l.locality))).map(loc => (
+                            <option key={loc} value={loc}>{loc}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-1">BHK Configuration</label>
+                        <select 
+                          value={matcherBhk} 
+                          onChange={e => setMatcherBhk(e.target.value)}
+                          className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                        >
+                          <option value="all">Any BHK Configuration</option>
+                          <option value="1 BHK">1 BHK</option>
+                          <option value="2 BHK">2 BHK</option>
+                          <option value="3 BHK">3 BHK</option>
+                          <option value="4+ BHK">4+ BHK / Villa</option>
+                        </select>
+                      </div>
+
+                      <button 
+                        onClick={() => {
+                          setMatcherPurpose('all');
+                          setMatcherType('all');
+                          setMatcherBudget('');
+                          setMatcherLocality('all');
+                          setMatcherBhk('all');
+                        }}
+                        className="w-full mt-2 py-1.5 text-center text-[10px] font-bold uppercase text-slate-400 hover:text-forest transition-colors"
+                      >
+                        Reset Matcher Form
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Right: Matched Properties List */}
+                  <div className="flex-grow bg-white border border-slate-200/80 rounded-xl p-5 shadow-sm flex flex-col overflow-hidden">
+                    <div className="flex justify-between items-center pb-3 border-b border-slate-100 mb-4 shrink-0">
+                      <div>
+                        <h4 className="font-serif text-lg font-semibold text-forest flex items-center gap-2">
+                          <Sparkles className="w-4 h-4 text-brass" /> Matched Properties Ranked
+                        </h4>
+                        <span className="text-[10px] text-slate-400">Inventory sorted by compatibility score against criteria.</span>
+                      </div>
+                    </div>
+
+                    <div className="flex-grow overflow-y-auto space-y-4 pr-1 scrollbar-thin">
+                      {[...visibleListings]
+                        .map(p => ({
+                          property: p,
+                          score: calculateMatchScore(p, {
+                            purpose: matcherPurpose,
+                            type: matcherType,
+                            maxBudget: matcherBudget,
+                            locality: matcherLocality,
+                            bhk: matcherBhk
+                          })
+                        }))
+                        .sort((a, b) => b.score - a.score)
+                        .map(({ property: p, score }) => (
+                          <div 
+                            key={p.id}
+                            onClick={() => triggerListingDrawer(p.id)}
+                            className="border border-slate-100 hover:border-brass/40 rounded-xl p-4 bg-pastel-bg/20 hover:bg-white transition-all cursor-pointer shadow-sm flex flex-col sm:flex-row justify-between sm:items-center gap-4"
+                          >
+                            <div className="flex items-center gap-4">
+                              <img src={p.image} className="w-16 h-16 rounded-lg object-cover border border-slate-200 shrink-0" alt="Thumb" />
+                              <div>
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="font-semibold text-forest text-sm">{p.bhk === 'N/A' ? '' : p.bhk + ' BHK '}{p.type} in {p.society}</span>
+                                  <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase ${
+                                    score >= 80 ? 'bg-pastel-mint text-green-900' :
+                                    score >= 50 ? 'bg-pastel-gold text-amber-900' : 'bg-slate-200 text-slate-600'
+                                  }`}>
+                                    {score}% Match
+                                  </span>
+                                </div>
+                                <div className="text-[11px] text-slate-400">{p.locality}, {p.city} • {p.carpetArea} sqft</div>
+                                <div className="text-xs font-serif font-bold text-forest mt-1">{formatPriceShort(p.price)}{p.purpose === 'Rent' && ' /mo'}</div>
+                              </div>
+                            </div>
+
+                            <div className="flex items-center gap-3 shrink-0">
+                              <button className="flex items-center gap-1 text-xs font-semibold text-forest hover:text-brass transition-colors">
+                                View Profile <ArrowUpRight className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Sub-tab 4: Active Offers & Deal Funnel */}
+              {crmSubTab === 'offers' && (
+                <div className="bg-white border border-slate-200/80 rounded-xl shadow-sm overflow-hidden flex-grow flex flex-col max-h-[75vh]">
+                  <div className="p-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center shrink-0">
+                    <div>
+                      <h4 className="font-serif text-lg font-semibold text-forest">Active Price Negotiations & Offers</h4>
+                      <p className="text-slate-400 text-xs">Track buyer offers, owner counter-offers, token deposits, and deal closure status.</p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setIsLogOfferOpen(true);
+                        setOfferClientName('');
+                        setOfferClientPhone('');
+                        setOfferPrice('');
+                        setOfferCounterPrice('');
+                        setOfferTokenAmount('');
+                        setOfferNotes('');
+                        setOfferStage('Offer Received');
+                        if (visibleListings.length > 0) {
+                          setTargetOfferListingId(visibleListings[0].id);
+                        } else {
+                          setTargetOfferListingId('');
+                        }
+                      }}
+                      className="flex items-center gap-2 bg-forest text-white px-4 py-2 rounded-md text-xs font-semibold hover:bg-forest-light transition-colors"
+                    >
+                      <PlusCircle className="w-3.5 h-3.5" />
+                      Log / Update Offer
+                    </button>
+                  </div>
+
+                  <div className="overflow-x-auto flex-grow scrollbar-thin">
+                    <table className="w-full text-left border-collapse text-xs">
+                      <thead>
+                        <tr className="border-b border-slate-200 bg-slate-100/70 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                          <th className="px-6 py-4">Property Details</th>
+                          <th className="px-6 py-4">Client & Contact</th>
+                          <th className="px-6 py-4 text-right">Asking Price</th>
+                          <th className="px-6 py-4 text-right">Offered / Counter Price</th>
+                          <th className="px-6 py-4 text-right">Token Amount</th>
+                          <th className="px-6 py-4">Deal Stage & Notes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {offers.length === 0 ? (
+                          <tr>
+                            <td colSpan={6} className="text-center py-20 text-sm text-slate-400">
+                              No active price offers recorded. Click "Log / Update Offer" to add one.
+                            </td>
+                          </tr>
+                        ) : (
+                          offers.map(o => {
+                            const matchedListing = listings.find(l => l.id === o.listingId);
+                            return (
+                              <tr key={o.id} className="border-b border-slate-100 hover:bg-slate-50/50 transition-colors">
+                                <td className="px-6 py-4">
+                                  {matchedListing ? (
+                                    <div 
+                                      onClick={() => triggerListingDrawer(matchedListing.id)}
+                                      className="flex items-center gap-3 cursor-pointer group"
+                                    >
+                                      <img src={matchedListing.image} className="w-10 h-10 rounded object-cover border border-slate-200" alt="" />
+                                      <div>
+                                        <span className="font-semibold text-forest text-xs group-hover:text-brass transition-colors block">
+                                          {matchedListing.bhk === 'N/A' ? '' : matchedListing.bhk + ' BHK '}{matchedListing.type}
+                                        </span>
+                                        <span className="text-[10px] text-slate-400 block">{matchedListing.society}, {matchedListing.locality}</span>
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <span className="text-slate-400 font-medium text-xs">{o.propertyName}</span>
+                                  )}
+                                </td>
+                                <td className="px-6 py-4">
+                                  <div className="flex flex-col gap-0.5">
+                                    <span className="font-semibold text-forest">{o.clientName}</span>
+                                    <span className="text-[10px] text-slate-400">{o.clientPhone}</span>
+                                  </div>
+                                </td>
+                                <td className="px-6 py-4 text-right font-serif font-bold text-slate-600">
+                                  {matchedListing ? formatPriceShort(matchedListing.price) : 'N/A'}
+                                </td>
+                                <td className="px-6 py-4 text-right">
+                                  <div className="flex flex-col items-end gap-0.5 font-serif font-bold">
+                                    <span className="text-forest text-sm">{formatPriceShort(o.offeredPrice)}</span>
+                                    {o.counterPrice && (
+                                      <span className="text-[10px] text-amber-800 bg-amber-50 px-1 rounded">Counter: {formatPriceShort(o.counterPrice)}</span>
+                                    )}
+                                  </div>
+                                </td>
+                                <td className="px-6 py-4 text-right font-serif font-bold text-green-700">
+                                  {o.tokenAmount ? formatPriceShort(o.tokenAmount) : '—'}
+                                </td>
+                                <td className="px-6 py-4">
+                                  <div className="flex flex-col gap-1 max-w-xs">
+                                    <div>
+                                      <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase ${
+                                        o.stage === 'Token Received' ? 'bg-pastel-mint text-green-900' :
+                                        o.stage === 'Deal Closed' ? 'bg-forest text-white' :
+                                        o.stage === 'Counter Offer' ? 'bg-pastel-gold text-amber-900' :
+                                        'bg-pastel-blue text-blue-900'
+                                      }`}>
+                                        {o.stage}
+                                      </span>
+                                    </div>
+                                    {o.notes && <p className="text-[10px] text-slate-400 italic line-clamp-2">{o.notes}</p>}
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              {/* Log Offer Inline Modal */}
+              {isLogOfferOpen && (
+                <div className="fixed inset-0 bg-slate-900/30 backdrop-blur-[1px] flex items-center justify-center z-50 animate-fade-in" onClick={() => setIsLogOfferOpen(false)}>
+                  <div className="bg-white border border-slate-200 shadow-2xl rounded-xl w-[480px] max-w-[90%] flex flex-col p-6 animate-scale-up" onClick={e => e.stopPropagation()}>
+                    <div className="flex justify-between items-center pb-3 border-b border-slate-100 mb-4 shrink-0">
+                      <h3 className="font-serif text-xl font-semibold text-forest flex items-center gap-2">
+                        <DollarSign className="w-5 h-5 text-brass" /> Log / Update Deal Offer
+                      </h3>
+                      <button onClick={() => setIsLogOfferOpen(false)} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
+                    </div>
+
+                    <form onSubmit={async (e) => {
+                      e.preventDefault();
+                      const targetProperty = listings.find(l => l.id === targetOfferListingId);
+                      const newOffer: Offer = {
+                        id: `offer-${Date.now()}`,
+                        listingId: targetOfferListingId,
+                        propertyName: targetProperty ? `${targetProperty.bhk === 'N/A' ? '' : targetProperty.bhk + ' BHK '}${targetProperty.type} in ${targetProperty.society}` : 'Unknown Property',
+                        clientName: offerClientName,
+                        clientPhone: offerClientPhone,
+                        offeredPrice: Number(offerPrice) || 0,
+                        counterPrice: offerCounterPrice ? Number(offerCounterPrice) : undefined,
+                        tokenAmount: offerTokenAmount ? Number(offerTokenAmount) : undefined,
+                        stage: offerStage,
+                        updatedAt: new Date().toISOString().split('T')[0],
+                        notes: offerNotes
+                      };
+
+                      if (supabaseClient) {
+                        try {
+                          await supabaseClient.from('property_offers').insert([{
+                            listing_id: newOffer.listingId,
+                            property_name: newOffer.propertyName,
+                            client_name: newOffer.clientName,
+                            client_phone: newOffer.clientPhone,
+                            offered_price: newOffer.offeredPrice,
+                            counter_price: newOffer.counterPrice,
+                            token_amount: newOffer.tokenAmount,
+                            stage: newOffer.stage,
+                            notes: newOffer.notes,
+                            updated_at: newOffer.updatedAt
+                          }]);
+                        } catch (err) {
+                          console.warn("Supabase offers insert error:", err);
+                        }
+                      }
+
+                      const filtered = offers.filter(o => o.listingId !== targetOfferListingId);
+                      const updated = [newOffer, ...filtered];
+                      setOffers(updated);
+                      localStorage.setItem('synex_offers', JSON.stringify(updated));
+                      setIsLogOfferOpen(false);
+                    }} className="space-y-4 text-xs">
+                      
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="flex flex-col gap-1.5 col-span-2">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Select Property</label>
+                          <select 
+                            value={targetOfferListingId} 
+                            onChange={e => setTargetOfferListingId(e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            required
+                          >
+                            {visibleListings.map(l => (
+                              <option key={l.id} value={l.id}>
+                                {l.bhk === 'N/A' ? '' : l.bhk + ' BHK '}{l.type} - {l.society} (Asking: {formatPriceShort(l.price)})
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Client Name</label>
+                          <input 
+                            type="text" 
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            placeholder="e.g. Rajesh Mehta"
+                            value={offerClientName}
+                            onChange={e => setOfferClientName(e.target.value)}
+                            required
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Client Phone</label>
+                          <input 
+                            type="text" 
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            placeholder="e.g. +91 98200 98200"
+                            value={offerClientPhone}
+                            onChange={e => setOfferClientPhone(e.target.value)}
+                            required
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Client Offer Price (₹)</label>
+                          <input 
+                            type="number" 
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            placeholder="e.g. 42000000"
+                            value={offerPrice}
+                            onChange={e => setOfferPrice(e.target.value ? Number(e.target.value) : '')}
+                            required
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Owner Counter Offer (₹)</label>
+                          <input 
+                            type="number" 
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            placeholder="e.g. 43500000 (Optional)"
+                            value={offerCounterPrice}
+                            onChange={e => setOfferCounterPrice(e.target.value ? Number(e.target.value) : '')}
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5 col-span-2">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Token / Booking Deposit (₹)</label>
+                          <input 
+                            type="number" 
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-9"
+                            placeholder="e.g. 500000 (Earnest deposit received)"
+                            value={offerTokenAmount}
+                            onChange={e => setOfferTokenAmount(e.target.value ? Number(e.target.value) : '')}
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5 col-span-2">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Deal Stage</label>
+                          <div className="grid grid-cols-4 gap-2">
+                            {(['Offer Received', 'Counter Offer', 'Token Received', 'Deal Closed'] as Offer['stage'][]).map(stage => (
+                              <button
+                                key={stage}
+                                type="button"
+                                onClick={() => setOfferStage(stage)}
+                                className={`py-1.5 border rounded text-[9px] font-bold text-center transition-all ${
+                                  offerStage === stage 
+                                    ? 'bg-forest border-forest text-white' 
+                                    : 'bg-slate-50 border-slate-200 text-slate-500 hover:bg-slate-100'
+                                }`}
+                              >
+                                {stage}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col gap-1.5 col-span-2">
+                          <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Offer Notes & Negotiation Comments</label>
+                          <textarea 
+                            className="w-full px-3 py-2 border border-slate-200 rounded-md focus:border-forest text-xs bg-white h-16 resize-none"
+                            placeholder="e.g. Buyer proposed quick 30-day closing in exchange for 5% discount..."
+                            value={offerNotes}
+                            onChange={e => setOfferNotes(e.target.value)}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex justify-end gap-3 pt-3 border-t border-slate-100 mt-4 shrink-0">
+                        <button 
+                          type="button" 
+                          onClick={() => setIsLogOfferOpen(false)}
+                          className="px-4 py-2 border border-slate-200 rounded-lg text-xs font-semibold text-slate-500 bg-white hover:bg-slate-50 transition-colors"
+                        >
+                          Cancel
+                        </button>
+                        <button 
+                          type="submit" 
+                          className="bg-forest hover:bg-forest-light text-white font-semibold text-xs py-2 px-5 rounded-lg transition-colors"
+                        >
+                          Save Offer Record
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
@@ -2747,6 +4237,7 @@ export default function App() {
                       <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 pb-1">Financial Parameters</div>
                       <div className="grid grid-cols-2 gap-3 text-xs">
                         <div className="flex flex-col"><span className="text-[9px] text-slate-400 uppercase">Asking Price</span><span className="font-serif text-lg font-bold text-forest">{formatCurrency(p.price)} {priceLabel}</span></div>
+                        <div className="flex flex-col"><span className="text-[9px] text-slate-400 uppercase">Rate per Sq. Ft.</span><span className="font-semibold text-brass">{p.carpetArea > 0 ? formatCurrency(Math.round(p.price / p.carpetArea)) : 'N/A'}/sqft{p.purpose === 'Rent' && ' /mo'}</span></div>
                         <div className="flex flex-col"><span className="text-[9px] text-slate-400 uppercase">Security Deposit</span><span className="font-semibold text-forest">{p.purpose === 'Rent' ? formatCurrency(p.deposit) : 'N/A'}</span></div>
                         <div className="flex flex-col"><span className="text-[9px] text-slate-400 uppercase">Maintenance Fee</span><span className="font-semibold text-forest">{formatCurrency(p.maintenance)} /mo</span></div>
                         <div className="flex flex-col"><span className="text-[9px] text-slate-400 uppercase">Price Negotiation</span><span className="font-semibold text-forest">{p.negotiable}</span></div>
@@ -2754,6 +4245,119 @@ export default function App() {
                         <div className="flex flex-col"><span className="text-[9px] text-slate-400 uppercase">Tenant Preference</span><span className="font-semibold text-forest">{p.purpose === 'Rent' ? p.preferredTenant : 'N/A'}</span></div>
                       </div>
                     </div>
+
+                    {/* Active Deal & Offer Status */}
+                    {(() => {
+                      const currentOffer = offers.find(o => o.listingId === p.id);
+                      return (
+                        <div className="space-y-3 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                          <div className="flex justify-between items-center border-b border-slate-200 pb-1.5">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Active Offer & Negotiation Ledger</span>
+                            <button
+                              onClick={() => {
+                                setTargetOfferListingId(p.id);
+                                if (currentOffer) {
+                                  setOfferClientName(currentOffer.clientName);
+                                  setOfferClientPhone(currentOffer.clientPhone);
+                                  setOfferPrice(currentOffer.offeredPrice);
+                                  setOfferCounterPrice(currentOffer.counterPrice || '');
+                                  setOfferTokenAmount(currentOffer.tokenAmount || '');
+                                  setOfferStage(currentOffer.stage);
+                                  setOfferNotes(currentOffer.notes || '');
+                                } else {
+                                  setOfferClientName('');
+                                  setOfferClientPhone('');
+                                  setOfferPrice('');
+                                  setOfferCounterPrice('');
+                                  setOfferTokenAmount('');
+                                  setOfferNotes('');
+                                  setOfferStage('Offer Received');
+                                }
+                                setIsLogOfferOpen(true);
+                              }}
+                              className="text-[10px] font-bold text-forest hover:text-brass flex items-center gap-1 uppercase tracking-wider"
+                            >
+                              <PlusCircle className="w-3 h-3" /> {currentOffer ? 'Update Offer' : 'Log Offer'}
+                            </button>
+                          </div>
+
+                          {currentOffer ? (
+                            <div className="space-y-2 text-xs">
+                              <div className="flex justify-between items-center">
+                                <span className="text-slate-500">Client: <strong>{currentOffer.clientName}</strong> ({currentOffer.clientPhone})</span>
+                                <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase ${
+                                  currentOffer.stage === 'Token Received' ? 'bg-pastel-mint text-green-900' :
+                                  currentOffer.stage === 'Deal Closed' ? 'bg-forest text-white' :
+                                  currentOffer.stage === 'Counter Offer' ? 'bg-pastel-gold text-amber-900' :
+                                  'bg-pastel-blue text-blue-900'
+                                }`}>
+                                  {currentOffer.stage}
+                                </span>
+                              </div>
+                              <div className="grid grid-cols-2 gap-2 bg-white p-2.5 rounded border border-slate-200">
+                                <div>
+                                  <span className="text-[9px] text-slate-400 block uppercase">Client Offered</span>
+                                  <span className="font-serif font-bold text-forest text-sm">{formatPriceShort(currentOffer.offeredPrice)}</span>
+                                </div>
+                                {currentOffer.counterPrice && (
+                                  <div>
+                                    <span className="text-[9px] text-amber-800 block uppercase">Owner Counter</span>
+                                    <span className="font-serif font-bold text-amber-900 text-sm">{formatPriceShort(currentOffer.counterPrice)}</span>
+                                  </div>
+                                )}
+                                {currentOffer.tokenAmount && (
+                                  <div className="col-span-2 border-t border-slate-100 pt-1 mt-1">
+                                    <span className="text-[9px] text-green-800 block uppercase">Earnest Token Paid</span>
+                                    <span className="font-serif font-bold text-green-700">{formatPriceShort(currentOffer.tokenAmount)}</span>
+                                  </div>
+                                )}
+                              </div>
+                              {currentOffer.notes && <p className="text-[10px] text-slate-500 italic">"{currentOffer.notes}"</p>}
+                            </div>
+                          ) : (
+                            <div className="text-[11px] text-slate-400 italic">No active price offer logged for this listing yet.</div>
+                          )}
+                        </div>
+                      );
+                    })()}
+
+                    {/* Matched Prospective Clients (Auto-Match Engine) */}
+                    {(() => {
+                      const matchedClients = showings.map(s => ({
+                        showing: s,
+                        score: calculateMatchScore(p, {
+                          purpose: p.purpose,
+                          type: p.type,
+                          maxBudget: p.price * 1.1,
+                          locality: p.locality,
+                          bhk: p.bhk
+                        })
+                      })).sort((a, b) => b.score - a.score);
+
+                      return (
+                        <div className="space-y-3">
+                          <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 pb-1 flex justify-between items-center">
+                            <span>Matched Client Leads</span>
+                            <span className="text-forest font-bold">{matchedClients.length} Interested Clients</span>
+                          </div>
+                          <div className="space-y-2">
+                            {matchedClients.map(({ showing: s, score }) => (
+                              <div key={s.id} className="p-2.5 bg-pastel-bg/30 border border-slate-200/60 rounded-lg flex justify-between items-center text-xs">
+                                <div>
+                                  <span className="font-semibold text-forest block">{s.clientName}</span>
+                                  <span className="text-[10px] text-slate-400">{s.clientPhone} • {s.status}</span>
+                                </div>
+                                <span className={`px-2 py-0.5 rounded text-[8px] font-bold uppercase ${
+                                  score >= 80 ? 'bg-pastel-mint text-green-900' : 'bg-pastel-gold text-amber-900'
+                                }`}>
+                                  {score}% Match
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })()}
 
                     <div className="space-y-3">
                       <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100 pb-1">Marketing Highlight Tags</div>
